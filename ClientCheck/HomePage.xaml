@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-
+<!--test git-->
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
