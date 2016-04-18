@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="ClientCheck.ResultPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClientCheck"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid >
+        
+
+        <Grid x:Name="LayoutRoot">
+
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title Panel -->
+            <StackPanel Grid.Row="0" Margin="19,0,0,0">
+                <TextBlock Text="ClientCheck" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
+                <TextBlock Text="ResultPage" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+            </StackPanel>
+
+            <!--TODO: Content should be placed within the following grid-->
+            <Grid Grid.Row="1" x:Name="ContentRoot" Margin="0,9.833,19,0" RenderTransformOrigin="0.46,0.462" HorizontalAlignment="Right" Width="362">
+
+                <StackPanel  Grid.Row="1" Margin="19,9.5,19,0">
+                    <TextBlock Text="{Binding Name}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource SubheaderTextBlockStyle}"
+                       Margin="12,5"
+                       />
+                    <TextBlock Text="{Binding SurName}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource GroupHeaderTextBlockStyle}"
+                       Margin="12,5"
+                       />
+                    <TextBlock Text="{Binding Phone}"
+                       TextWrapping="Wrap"
+                       Style="{StaticResource BodyTextBlockStyle}"
+                       Margin="12,5"
+                       />
+                    <!--<HyperlinkButton Content="Read more on the web"
+                             Click="HyperlinkButton_Click"
+                             Margin="12,5"
+                        />-->
+                    </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
