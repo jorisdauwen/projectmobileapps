@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientCheck.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,13 @@ namespace ClientCheck
     /// </summary>
     public sealed partial class HomePage : Page
     {
+        private NavigationHelper navigationHelper;
+        
         public HomePage()
         {
             this.InitializeComponent();
+
+            this.navigationHelper = new NavigationHelper(this);
         }
 
         /// <summary>
@@ -34,6 +39,25 @@ namespace ClientCheck
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+       
+
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            //settings
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            // gaat naarnewclient page
+            this.Frame.Navigate(typeof(NewClientPage));
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //gaat naar searchpage page
+            this.Frame.Navigate(typeof(SearchPage));
         }
     }
 }

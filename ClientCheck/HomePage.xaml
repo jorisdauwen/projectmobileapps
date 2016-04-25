@@ -62,8 +62,8 @@
                 </Grid.ColumnDefinitions>
 
 
-                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0.5" Width="242"  Content="new client"/>
-                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0.5" Width="242" Content="find client"/>
+                <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0.5" Width="242"  Content="new client" Click="Button_Click"/>
+                <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,0.5" Width="242" Content="find client" Click="Button_Click_1"/>
 
 
             </Grid>

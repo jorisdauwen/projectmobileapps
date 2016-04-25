@@ -60,7 +60,7 @@
 
                 <TextBox  
                 Name="TaskNameTextBox"
-                TextChanged="TextBox_TextChanged"
+                TextChanged="TaskNameTextBox_TextChanged"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
@@ -81,7 +81,7 @@
 
                 <TextBox  
                 Name="surNameTextBox"
-                TextChanged="TextBox_TextChanged"
+                TextChanged="surNameTextBox_TextChanged"
                 Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"

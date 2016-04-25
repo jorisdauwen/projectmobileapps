@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientCheck.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,13 @@ namespace ClientCheck
     /// </summary>
     public sealed partial class ChangeDetailsPage : Page
     {
+        private NavigationHelper navigationHelper;
+
         public ChangeDetailsPage()
         {
             this.InitializeComponent();
+
+            this.navigationHelper = new NavigationHelper(this);
         }
 
         /// <summary>
@@ -34,6 +39,27 @@ namespace ClientCheck
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+        }
+
+        private void TaskNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void surNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void AdresTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //laat een invul formuliet zien waar de de gegevens van de klant kunne aanpassen
+            this.Frame.Navigate(typeof(DetailsPage));
         }
     }
 }

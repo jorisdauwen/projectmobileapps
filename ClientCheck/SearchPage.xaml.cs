@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientCheck.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,14 @@ namespace ClientCheck
     /// </summary>
     public sealed partial class SearchPage : Page
     {
+
+        private NavigationHelper navigationHelper;
+        
         public SearchPage()
         {
             this.InitializeComponent();
+
+            this.navigationHelper = new NavigationHelper(this);
         }
 
         /// <summary>
@@ -34,6 +40,23 @@ namespace ClientCheck
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //zoket client op en laat resultaat in de resultpage zien
+            this.Frame.Navigate(typeof(ResultPage));
+        }
+
+        private void TaskNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void surNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

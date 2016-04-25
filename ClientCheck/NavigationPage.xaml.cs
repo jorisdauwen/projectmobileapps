@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClientCheck.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +23,12 @@ namespace ClientCheck
     /// </summary>
     public sealed partial class NavigationPage : Page
     {
+        private NavigationHelper navigationHelper;
         public NavigationPage()
         {
             this.InitializeComponent();
+
+            this.navigationHelper = new NavigationHelper(this);
         }
 
         /// <summary>
