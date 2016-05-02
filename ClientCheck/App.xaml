@@ -5,7 +5,7 @@
     xmlns:local="using:ClientCheck">
 
     <Application.Resources>
-        <local:Clients x:Key="tasks"/>
+        <local:Clients x:Key="clientskey"/>
     </Application.Resources>
 
 </Application>

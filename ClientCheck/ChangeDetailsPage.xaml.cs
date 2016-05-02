@@ -24,12 +24,69 @@ namespace ClientCheck
     public sealed partial class ChangeDetailsPage : Page
     {
         private NavigationHelper navigationHelper;
+        private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
         public ChangeDetailsPage()
         {
             this.InitializeComponent();
 
             this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
+            this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+        }
+
+        /// <summary>
+        /// Gets the <see cref="NavigationHelper"/> associated with this <see cref="Page"/>.
+        /// </summary>
+        public NavigationHelper NavigationHelper
+        {
+            get { return this.navigationHelper; }
+        }
+
+        /// <summary>
+        /// Gets the view model for this <see cref="Page"/>.
+        /// This can be changed to a strongly typed view model.
+        /// </summary>
+        public ObservableDictionary DefaultViewModel
+        {
+            get { return this.defaultViewModel; }
+        }
+
+        /// <summary>
+        /// Populates the page with content passed during navigation.  Any saved state is also
+        /// provided when recreating a page from a prior session.
+        /// </summary>
+        /// <param name="sender">
+        /// The source of the event; typically <see cref="NavigationHelper"/>
+        /// </param>
+        /// <param name="e">Event data that provides both the navigation parameter passed to
+        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
+        /// a dictionary of state preserved by this page during an earlier
+        /// session.  The state will be null the first time a page is visited.</param>
+        private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        {
+            //Client item = new Client();
+            //Clients Person = (Clients)App.Current.Resources["clientskey"];
+            //Person.Add(item);
+            //this.defaultViewModel["Item"] = Person;
+
+            int index = (int)e.NavigationParameter;
+            Clients Person = (Clients)App.Current.Resources["clientskey"];
+            Client item = Person.Person[index];
+
+            this.defaultViewModel["Item"] = item;
+        }
+
+        /// <summary>
+        /// Preserves state associated with this page in case the application is suspended or the
+        /// page is discarded from the navigation cache.  Values must conform to the serialization
+        /// requirements of <see cref="SuspensionManager.SessionState"/>.
+        /// </summary>
+        /// <param name="sender">The source of the event; typically <see cref="NavigationHelper"/></param>
+        /// <param name="e">Event data that provides an empty dictionary to be populated with
+        /// serializable state.</param>
+        private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
+        {
         }
 
         /// <summary>
@@ -39,27 +96,31 @@ namespace ClientCheck
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            //int index = (int)e.Parameter;
+            //Clients Person = (Clients)App.Current.Resources["clientskey"];
+            //Client item = Person.Person[index];
+
+            //this.defaultViewModel["Item"] = item;
+
+            this.navigationHelper.OnNavigatedTo(e);
         }
 
-        private void TaskNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void surNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void AdresTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //laat een invul formuliet zien waar de de gegevens van de klant kunne aanpassen
-            this.Frame.Navigate(typeof(DetailsPage));
+            Client item = new Client();
+            item.Name = NameTextBox.Text;
+            item.SurName = SurNameTextBox.Text;
+            item.Phone = PhoneTextBox.Text;
+            item.Email = EmailTextBox.Text;
+            item.Adres = AdresTextBox.Text;
+            Clients Person = (Clients)App.Current.Resources["clientskey"];
+            Person.Add(item);
+            //this.defaultViewModel["Item"] = item;
+
+            this.Frame.Navigate(typeof(DetailsPage), Person.Person.Count - 1);
         }
     }
 }

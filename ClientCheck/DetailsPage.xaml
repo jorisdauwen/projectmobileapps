@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel.Item, RelativeSource={RelativeSource Self}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -62,7 +63,7 @@
                 <TextBlock 
                         Grid.Row="0"
                         Grid.Column="1"
-                        Text="{Binding Name}"
+                        Text="{Binding Name, Mode=TwoWay}"
                         TextWrapping="Wrap"
                         Style="{StaticResource SubheaderTextBlockStyle}"
                         Margin="12,5"
@@ -78,7 +79,7 @@
                 <TextBlock 
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{Binding SurName}"
+                        Text="{Binding SurName, Mode=TwoWay}"
                         TextWrapping="Wrap"
                         Style="{StaticResource SubheaderTextBlockStyle}"
                         Margin="12,5"
@@ -95,7 +96,7 @@
                 <TextBlock 
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="{Binding Phone}"
+                        Text="{Binding Phone, Mode=TwoWay}"
                         TextWrapping="Wrap"
                         Style="{StaticResource SubheaderTextBlockStyle}"
                         Margin="12,5"
@@ -112,7 +113,7 @@
                 <TextBlock 
                         Grid.Row="3"
                         Grid.Column="1"
-                        Text="{Binding Email}"
+                        Text="{Binding Email, Mode=TwoWay}"
                         TextWrapping="Wrap"
                         Style="{StaticResource SubheaderTextBlockStyle}"
                         Margin="12,5"
@@ -129,7 +130,7 @@
                 <TextBlock 
                         Grid.Row="4"
                         Grid.Column="1"
-                        Text="{Binding Name}"
+                        Text="{Binding Adres, Mode=TwoWay}"
                         TextWrapping="Wrap"
                         Style="{StaticResource SubheaderTextBlockStyle}"
                         Margin="12,5"

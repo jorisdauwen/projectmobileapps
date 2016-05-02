@@ -25,6 +25,7 @@ namespace ClientCheck
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int personindex;
         public DetailsPage()
         {
             this.InitializeComponent();
@@ -64,8 +65,13 @@ namespace ClientCheck
         /// session.  The state will be null the first time a page is visited.</param>
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            Clients tasks = (Clients)App.Current.Resources["Clients"];
-            this.defaultViewModel["Clients"] = tasks;
+            
+            int index = (int)e.NavigationParameter;
+            personindex= (int)e.NavigationParameter;
+            Clients Person = (Clients)App.Current.Resources["clientskey"];
+            Client item = Person.Person[index];
+            
+            this.defaultViewModel["Item"] = item;
 
 
         }
@@ -122,7 +128,16 @@ namespace ClientCheck
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ChangeDetailsPage));
+            
+            //int index = personindex;
+
+            //Clients Person = (Clients)App.Current.Resources["clientskey"];
+            //Client item = Person.Person[index];
+
+            //this.defaultViewModel["Item"] = item;
+            //this.Frame.Navigate(typeof(ChangeDetailsPage),Person.Person.Count - 1);
+            this.Frame.Navigate(typeof(ChangeDetailsPage), personindex);
+
         }
     }
 }

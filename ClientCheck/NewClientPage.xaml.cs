@@ -68,10 +68,10 @@ namespace ClientCheck
 
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            Client item = new Client();
-            Clients tasks = (Clients)App.Current.Resources["tasks"];
-            tasks.Add(item);
-            this.defaultViewModel["Item"] = item;
+            //Client item = new Client();
+            //Clients Person = (Clients)App.Current.Resources["clientskey"];
+            //Person.Add(item);
+            //this.defaultViewModel["Item"] = Person;
         }
 
         /// <summary>
@@ -104,25 +104,21 @@ namespace ClientCheck
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //slaat gegevent nieuwe klant op en laat deze in de detailspage zien
-            this.Frame.Navigate(typeof(DetailsPage));
-        }
+            //slaat gegevens nieuwe klant op en laat deze in de detailspage zien
+            Client item = new Client();
+            item.Name = NameTextBox.Text;
+            item.SurName = SurNameTextBox.Text;
+            item.Phone = PhoneTextBox.Text;
+            item.Email = EmailTextBox.Text;
+            item.Adres = AdresTextBox.Text;
+            Clients Person = (Clients)App.Current.Resources["clientskey"];
+            Person.Add(item);
+           
 
-        private void TaskNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void surNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void AdresTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            this.Frame.Navigate(typeof(DetailsPage), Person.Person.Count-1);
 
         }
 
-
+        
     }
 }

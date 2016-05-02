@@ -12,23 +12,29 @@ namespace ClientCheck
     {
         public Clients()
         {
-            this.Items = new ObservableCollection<Client>();
+            this.Person = new ObservableCollection<Client>();
             this.Name = "work";
 
             Client person1 = new Client();
             person1.Name = "Name1";
-            person1.Surname = "Surname1";
-            this.Items.Add(person1);
+            person1.SurName = "Surname1";
+            person1.Adres = "iets";
+            person1.Phone = "4454545646456";
+            person1.Email = "iets@email.com";
+            this.Person.Add(person1);
 
             Client person2 = new Client();
             person2.Name = "Name2";
-            person2.Surname = "Surname2";
-            this.Items.Add(person2);
+            person2.SurName = "Surname2";
+            person2.Adres = "iets2";
+            person2.Phone = "452452452";
+            person2.Email = "iets2@email.com";
+            this.Person.Add(person2);
 
 
         }
 
-        public ObservableCollection<Client> Items { get; private set; }
+        public ObservableCollection<Client> Person { get; private set; }
 
         private string name;
 
@@ -50,12 +56,12 @@ namespace ClientCheck
 
         public void Add(Client item)
         {
-            this.Items.Add(item);
+            this.Person.Add(item);
         }
 
         public void Remove(Client item)
         {
-            this.Items.Remove(item);
+            this.Person.Remove(item);
         }
 
 

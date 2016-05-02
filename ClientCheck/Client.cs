@@ -28,15 +28,15 @@ namespace ClientCheck
         }
         private string surname;
 
-        public string Surname
+        public string SurName
         {
             get { return surname; }
             set
             {
-                if (value != Surname)
+                if (value != SurName)
                 {
                     surname = value;
-                    INotifyPropertyChanged("Surname");
+                    INotifyPropertyChanged("SurName");
 
                 }
 

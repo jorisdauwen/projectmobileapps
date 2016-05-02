@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    DataContext="{Binding DefaultViewModel.Item, RelativeSource={RelativeSource Self}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
@@ -19,20 +20,24 @@
             </Grid.ChildrenTransitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" MinHeight="123.333"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <!-- Title Panel -->
-            <StackPanel Grid.Row="0" Margin="19,0,0,0">
+            <StackPanel Grid.Row="0" Margin="19,0,0,0.333">
                 <TextBlock Text="ClientCheck" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-                <TextBlock Text="NewClientPage" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
+                <TextBlock Text="NewClientPage" Margin="0,-6.5,0,20.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
             </StackPanel>
 
             <!--TODO: Content should be placed within the following grid-->
-            <Grid Grid.Row="1" x:Name="ContentRoot" Margin="0,9.833,19,0" RenderTransformOrigin="0.46,0.462" HorizontalAlignment="Right" Width="362">
+            <ScrollViewer Grid.Row="1">
+            
+            <Grid Grid.Row="1" x:Name="ContentRoot" Margin="0,9.667,19,0" RenderTransformOrigin="0.46,0.462" HorizontalAlignment="Right" Width="362">
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" MinHeight="34.167"/>
+                    <RowDefinition Height="Auto" MinHeight="58.335"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -40,6 +45,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" MinHeight="58.333"/>
+                    <RowDefinition Height="Auto" MinHeight="58.333"/>
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
@@ -53,20 +60,20 @@
                 Grid.Column="0"
                
                 Text="name:" 
-                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0,0,57.167" Grid.RowSpan="2"
+                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0,-0.333,10.167"
             />
 
                 <TextBox  
-                Name="TaskNameTextBox"
-                TextChanged="TaskNameTextBox_TextChanged"
+                Name="NameTextBox"
+                
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                
-                Text="{Binding Name, Mode=TwoWay}"
+                Text="{Binding Name, Mode=OneWay}"
                 VerticalAlignment="Center"
                
-                InputScope="AlphanumericFullWidth" Margin="0,10.167,-0.333,9.167"
+                InputScope="AlphanumericFullWidth" Margin="0,9.833,-0.333,9.502" Height="39"
              />
 
                 <TextBlock  
@@ -74,48 +81,93 @@
                 Grid.Column="0"
                
                 Text="surname:" 
-                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0.833,0,56.333" Grid.RowSpan="2"
+                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0.498,-0.333,10.502"
             />
 
                 <TextBox  
-                Name="surNameTextBox"
-                TextChanged="surNameTextBox_TextChanged"
+                Name="SurNameTextBox"
+                
                 Grid.Row="3"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                
-                Text="{Binding SurName, Mode=TwoWay}" 
+                Text="{Binding SurName, Mode=OneWay}" 
                 VerticalAlignment="Center"
                
-                InputScope="AlphanumericFullWidth" Margin="0,10,-0.333,9.333"
+                InputScope="AlphanumericFullWidth" Margin="0,10.498,-0.333,8.835" Height="39" 
              />
 
                 <TextBlock  
                 Grid.Row="4"
                 Grid.Column="0"
                
-                Text="Adres:" 
-                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0.833,0,56.333" Grid.RowSpan="2"
+                Text="phonenumber:" 
+                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,1.165,-0.333,9.835"
             />
 
                 <TextBox  
-                Name="AdresTextBox"
-                TextChanged="AdresTextBox_TextChanged"
+                Name="PhoneTextBox"
+                
                 Grid.Row="5"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"
                
-                Text="{Binding Adres, Mode=TwoWay}" 
+                Text="{Binding Phonenumber, Mode=OneWay}" 
                 VerticalAlignment="Center"
                
-                InputScope="AlphanumericFullWidth" Margin="0,10,-0.333,9.333"
+                InputScope="AlphanumericFullWidth" Margin="0,10.165,-0.333,9.169" Height="39"
              />
 
-                <Button Grid.Row="6" Grid.Column="0" Height="57" Margin="0,0,0,0.333" Click="Button_Click" Content="add"/>
-                
+                <TextBlock  
+                Grid.Row="6"
+                Grid.Column="0"
+               
+                Text="Email:" 
+                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0.831,-0.333,10.169"
+            />
 
-            </Grid>
+                <TextBox  
+                Name="EmailTextBox"
+                
+                Grid.Row="7"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+               
+                Text="{Binding email, Mode=OneWay}" 
+                VerticalAlignment="Center"
+               
+                InputScope="AlphanumericFullWidth" Margin="0,9.831,-0.333,9.502" Height="39"
+             />
+
+                <TextBlock  
+                Grid.Row="8"
+                Grid.Column="0"
+               
+                Text="Adres:" 
+                Style="{StaticResource BaseTextBlockStyle  }" Margin="0,0.498,122.167,9.669" Grid.ColumnSpan="2"
+            />
+
+                <TextBox  
+                Name="AdresTextBox"
+                
+                Grid.Row="9"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+               
+                Text="{Binding Adres, Mode=OneWay}" 
+                VerticalAlignment="Center"
+               
+                InputScope="AlphanumericFullWidth" Margin="0,10.331,-0.333,9.002" Height="39"
+             />
+
+                <Button Grid.Row="9" Grid.Column="0" Height="58" Margin="0,57.331,0,1.335" Click="Button_Click" Content="add" Grid.RowSpan="2" Width="109"/>
+
+
+                </Grid>
+            </ScrollViewer>
+
         </Grid>
+       
 
     </Grid>
 </Page>
