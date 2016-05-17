@@ -59,8 +59,8 @@
             />
 
                 <TextBox  
-                Name="TaskNameTextBox"
-                TextChanged="TaskNameTextBox_TextChanged"
+                Name="NameTextBox"
+                TextChanged="NameTextBox_TextChanged"
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="3"

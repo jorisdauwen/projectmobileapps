@@ -14,6 +14,10 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Microsoft.WindowsAzure.MobileServices;
+using Windows.UI.Popups;
+using System.Threading.Tasks;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace ClientCheck
@@ -21,8 +25,18 @@ namespace ClientCheck
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    /// 
+
     public sealed partial class SearchPage : Page
     {
+
+
+        //moet deze lijst vervangen worden door mijn eigen observeble list? komt dit dan overeen met db?
+    private MobileServiceCollection<TodoItem, TodoItem> items;
+    private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>();
+    //private IMobileServiceSyncTable<TodoItem> todoTable = App.MobileService.GetSyncTable<TodoItem>(); // offline sync
+
+
 
         private NavigationHelper navigationHelper;
         
@@ -43,13 +57,16 @@ namespace ClientCheck
             //Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //zoket client op en laat resultaat in de resultpage zien
-            this.Frame.Navigate(typeof(ResultPage));
+             zoek();
+            await zoek();
+            this.Frame.Navigate(typeof(ResultPage), items);
+           
         }
 
-        private void TaskNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
@@ -58,5 +75,19 @@ namespace ClientCheck
         {
 
         }
+
+
+
+        private async Task zoek()
+        {
+            //await todoTable.Select() ;
+            List<TodoItem> items = await todoTable
+              .Where(todoItem => todoItem.Name == NameTextBox.Text && todoItem.SurName == surNameTextBox.Text )
+                 .ToListAsync();
+
+        }
+
+        //verslag werking prog en hoe opgebouwd grote blokken hoe werkt het  hoe werkt het? pwp geen visual studio alle code in pwp
+
     }
 }

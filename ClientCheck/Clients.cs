@@ -13,7 +13,7 @@ namespace ClientCheck
         public Clients()
         {
             this.Person = new ObservableCollection<Client>();
-            this.Name = "work";
+            //this.Name = "work";//waar dient dit voor?
 
             Client person1 = new Client();
             person1.Name = "Name1";

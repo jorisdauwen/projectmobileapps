@@ -14,6 +14,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Microsoft.WindowsAzure.MobileServices;
+using Windows.UI.Popups;
+using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
 namespace ClientCheck
@@ -26,6 +31,12 @@ namespace ClientCheck
 
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+
+        private MobileServiceCollection<TodoItem, TodoItem> items;
+        private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>();
+        //private IMobileServiceSyncTable<TodoItem> todoTable = App.MobileService.GetSyncTable<TodoItem>(); // offline sync
+
+
         public NewClientPage()
         {
             this.InitializeComponent();
@@ -102,7 +113,7 @@ namespace ClientCheck
             this.navigationHelper.OnNavigatedFrom(e);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             //slaat gegevens nieuwe klant op en laat deze in de detailspage zien
             Client item = new Client();
@@ -113,7 +124,15 @@ namespace ClientCheck
             item.Adres = AdresTextBox.Text;
             Clients Person = (Clients)App.Current.Resources["clientskey"];
             Person.Add(item);
-           
+
+
+            JObject jo = new JObject();
+            jo.Add("Name", item.Name);
+            jo.Add("SurName", item.SurName);
+            jo.Add("Adres", item.Adres);
+            jo.Add("Phone", item.Phone);
+            jo.Add("Email", item.Email);
+            var inserted = await todoTable.InsertAsync(jo);
 
             this.Frame.Navigate(typeof(DetailsPage), Person.Person.Count-1);
 

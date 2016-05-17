@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
+using Microsoft.WindowsAzure.MobileServices;
+
+
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
 namespace ClientCheck
@@ -27,6 +30,12 @@ namespace ClientCheck
     {
         private TransitionCollection transitions;
 
+
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://clientcheck.azurewebsites.net"
+        );
+
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -35,6 +44,10 @@ namespace ClientCheck
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+#if !WINDOWS_PHONE_APP
+                RequestedTheme = ApplicationTheme.Light;    
+#endif
         }
 
         /// <summary>
@@ -130,6 +143,9 @@ namespace ClientCheck
             // TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+
+                
 
 
     }
